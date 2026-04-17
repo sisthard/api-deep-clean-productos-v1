@@ -1,0 +1,43 @@
+quarkus:
+  rest-client:
+    escuelajs-api:
+      url: https://api.escuelajs.co
+      scope: jakarta.inject.Singleton
+  http:
+    port: 8082
+  datasource:
+    username: postgres
+    password: 123456789
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/db_deepclean_product
+  hibernate-orm:
+    database:
+      generation: update
+    log:
+      sql: true
+      format-sql: true
+      bind-parameters: true
+
+  # DESACTIVAR DEV SERVICES COMPLETAMENTE
+  kafka:
+    devservices:
+      enabled: false
+
+# Configuración de Kafka Local
+kafka:
+  bootstrap:
+    servers: localhost:9092
+
+mp:
+  messaging:
+    outgoing:
+      product-out:
+        connector: smallrye-kafka
+        topic: products-events
+        value-serializer: io.quarkus.kafka.client.serialization.ObjectMapperSerializer
+
+    incoming:
+      product-in:
+        connector: smallrye-kafka
+        topic: products-events
+        value-deserializer: com.deep.clean.app.kafka.ProductEventDeserializer

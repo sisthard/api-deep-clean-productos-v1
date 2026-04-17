@@ -1,0 +1,27 @@
+{
+  "namespace": "com.deep.clean.app.events",
+  "type": "record",
+  "name": "ProductEvent",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "sku",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "timestamp",
+      "type": "string"
+    }
+  ]
+}
